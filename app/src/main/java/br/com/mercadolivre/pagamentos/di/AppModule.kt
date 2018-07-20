@@ -41,7 +41,7 @@ class AppModule {
     @Provides
     fun provideQueryInterceptor() = Interceptor { chain ->
         var request = chain.request()
-        val url = request.url().newBuilder().addQueryParameter("api_key", "").build()
+        val url = request.url().newBuilder().addQueryParameter("public_key", "444a9ef5-8a6b-429f-abdf-587639155d88").build()
         request = request.newBuilder().url(url).build()
         chain.proceed(request)
     }

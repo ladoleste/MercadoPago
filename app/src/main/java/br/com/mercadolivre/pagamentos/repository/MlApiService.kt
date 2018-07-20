@@ -8,6 +8,6 @@ import retrofit2.http.GET
  *Created by Anderson on 08/12/2017.
  */
 interface MlApiService {
-    @GET("movie/popular")
-    fun getPaymentsMethods(): Single<PaymentMethods>
+    @GET("v1/payment_methods")
+    fun loadPaymentMethods(): Single<List<PaymentMethods>>
 }

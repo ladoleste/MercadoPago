@@ -18,7 +18,7 @@ class DebugLog : Timber.DebugTree() {
         tag?.let {
             if (it.contains('|')) {
                 val message1 = String.format(".(%s.kt:%s) - %s", tag.split("|")[0].toRegex(), tag.split("|")[1].toRegex(), message)
-                Log.println(priority, "ClaroApp", message1)
+                Log.println(priority, "MercadoPago", message1)
             } else {
                 Log.println(priority, tag, message)
             }

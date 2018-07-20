@@ -11,7 +11,7 @@ data class PaymentMethods(@SerializedName("settings")
                           @SerializedName("secure_thumbnail")
                           val secureThumbnail: String = "",
                           @SerializedName("min_allowed_amount")
-                          val minAllowedAmount: Int = 0,
+                          val minAllowedAmount: Double = 0.0,
                           @SerializedName("processing_modes")
                           val processingModes: List<String>?,
                           @SerializedName("name")

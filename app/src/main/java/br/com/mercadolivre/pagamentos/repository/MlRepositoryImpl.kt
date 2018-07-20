@@ -15,5 +15,5 @@ class MlRepositoryImpl : MlRepository {
         MlApplication.component.inject(this)
     }
 
-    override fun getPaymentsMethods() = api.getPaymentsMethods()
+    override fun loadPaymentMethods() = api.loadPaymentMethods()
 }

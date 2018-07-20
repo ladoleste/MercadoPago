@@ -24,15 +24,16 @@ class MainViewModel : BaseViewModel() {
         MlApplication.component.inject(this)
     }
 
-    fun loadPaymentsMethods(): LiveData<PaymentMethods> = payMethods
-    fun loadError(): LiveData<Throwable> = error
+    fun getPaymentsMethods(): LiveData<PaymentMethods> = payMethods
 
-    fun getPaymentsMethods() {
-        cDispose.add(repo.getPaymentsMethods()
+    fun getError(): LiveData<Throwable> = error
+
+    fun loadPaymentsMethods() {
+        cDispose.add(repo.loadPaymentMethods()
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { t -> Timber.e(t) }
                 .subscribe({
-                    payMethods.postValue(it)
+                    payMethods.postValue(it.first())
                 }, {
                     error.postValue(it)
                 }))
