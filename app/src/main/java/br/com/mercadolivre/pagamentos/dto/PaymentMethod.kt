@@ -2,29 +2,29 @@ package br.com.mercadolivre.pagamentos.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class PaymentMethods(@SerializedName("settings")
+data class PaymentMethod(@SerializedName("settings")
                           val settings: List<SettingsItem>?,
-                          @SerializedName("thumbnail")
+                         @SerializedName("thumbnail")
                           val thumbnail: String = "",
-                          @SerializedName("deferred_capture")
+                         @SerializedName("deferred_capture")
                           val deferredCapture: String = "",
-                          @SerializedName("secure_thumbnail")
+                         @SerializedName("secure_thumbnail")
                           val secureThumbnail: String = "",
-                          @SerializedName("min_allowed_amount")
+                         @SerializedName("min_allowed_amount")
                           val minAllowedAmount: Double = 0.0,
-                          @SerializedName("processing_modes")
+                         @SerializedName("processing_modes")
                           val processingModes: List<String>?,
-                          @SerializedName("name")
+                         @SerializedName("name")
                           val name: String = "",
-                          @SerializedName("id")
+                         @SerializedName("id")
                           val id: String = "",
-                          @SerializedName("additional_info_needed")
+                         @SerializedName("additional_info_needed")
                           val additionalInfoNeeded: List<String>?,
-                          @SerializedName("payment_type_id")
+                         @SerializedName("payment_type_id")
                           val paymentTypeId: String = "",
-                          @SerializedName("status")
+                         @SerializedName("status")
                           val status: String = "",
-                          @SerializedName("max_allowed_amount")
+                         @SerializedName("max_allowed_amount")
                           val maxAllowedAmount: Int = 0,
-                          @SerializedName("accreditation_time")
+                         @SerializedName("accreditation_time")
                           val accreditationTime: Int = 0)

@@ -2,7 +2,7 @@ package br.com.mercadolivre.pagamentos.ui
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import br.com.mercadolivre.pagamentos.dto.PaymentMethods
+import br.com.mercadolivre.pagamentos.dto.PaymentMethod
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import br.com.mercadolivre.pagamentos.repository.MlRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,14 +17,14 @@ class MainViewModel : BaseViewModel() {
     @Inject
     lateinit var repo: MlRepository
 
-    private val payMethods = MutableLiveData<PaymentMethods>()
+    private val payMethods = MutableLiveData<List<PaymentMethod>>()
     private val error = MutableLiveData<Throwable>()
 
     init {
         MlApplication.component.inject(this)
     }
 
-    fun getPaymentsMethods(): LiveData<PaymentMethods> = payMethods
+    fun getPaymentsMethods(): LiveData<List<PaymentMethod>> = payMethods
 
     fun getError(): LiveData<Throwable> = error
 
@@ -33,7 +33,7 @@ class MainViewModel : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { t -> Timber.e(t) }
                 .subscribe({
-                    payMethods.postValue(it.first())
+                    payMethods.postValue(it)
                 }, {
                     error.postValue(it)
                 }))

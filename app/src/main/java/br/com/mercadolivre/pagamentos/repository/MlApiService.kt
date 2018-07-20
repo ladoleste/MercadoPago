@@ -1,6 +1,6 @@
 package br.com.mercadolivre.pagamentos.repository
 
-import br.com.mercadolivre.pagamentos.dto.PaymentMethods
+import br.com.mercadolivre.pagamentos.dto.PaymentMethod
 import io.reactivex.Single
 import retrofit2.http.GET
 
@@ -9,5 +9,5 @@ import retrofit2.http.GET
  */
 interface MlApiService {
     @GET("v1/payment_methods")
-    fun loadPaymentMethods(): Single<List<PaymentMethods>>
+    fun loadPaymentMethods(): Single<List<PaymentMethod>>
 }
