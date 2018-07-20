@@ -1,8 +1,9 @@
-package br.com.mercadolivre.pagamentos.ui
+package br.com.mercadolivre.pagamentos.features.amount
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import br.com.mercadolivre.pagamentos.dto.PaymentMethod
+import br.com.mercadolivre.pagamentos.features.BaseViewModel
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import br.com.mercadolivre.pagamentos.repository.MlRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,7 +13,7 @@ import javax.inject.Inject
 /**
  *Created by Anderson on 10/12/2017.
  */
-class MainViewModel : BaseViewModel() {
+class AmountViewModel : BaseViewModel() {
 
     @Inject
     lateinit var repo: MlRepository

@@ -1,4 +1,4 @@
-package br.com.mercadolivre.pagamentos.ui
+package br.com.mercadolivre.pagamentos.features.paymentmethod
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -11,24 +11,25 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.dto.PaymentMethod
+import br.com.mercadolivre.pagamentos.features.amount.AmountViewModel
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_payment_method.*
 import timber.log.Timber
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class MainActivityFragment : Fragment() {
+class PaymentMethodFragment : Fragment() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: AmountViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(AmountViewModel::class.java)
         viewModel.getPaymentsMethods().observe(this, Observer(this::loadData))
         viewModel.getError().observe(this, Observer(this::handleError))
 
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        return inflater.inflate(R.layout.fragment_payment_method, container, false)
     }
 
     private fun loadData(payMethods: List<PaymentMethod>?) {

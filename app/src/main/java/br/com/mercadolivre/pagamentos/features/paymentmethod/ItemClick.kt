@@ -1,4 +1,4 @@
-package br.com.mercadolivre.pagamentos.ui
+package br.com.mercadolivre.pagamentos.features.paymentmethod
 
 import br.com.mercadolivre.pagamentos.dto.PaymentMethod
 

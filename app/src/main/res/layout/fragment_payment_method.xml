@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainActivityFragment"
+    tools:context=".features.amount.AmountFragment"
     tools:showIn="@layout/activity_main">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_payments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_payment" />
+        tools:listitem="@layout/item_payment_method" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

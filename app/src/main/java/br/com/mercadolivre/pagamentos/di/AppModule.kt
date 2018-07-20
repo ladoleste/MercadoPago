@@ -33,7 +33,6 @@ class AppModule {
     fun provideLogger(): HttpLoggingInterceptor {
 
         val logger = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { mensagem -> Timber.tag("OkHttp").d(mensagem); })
-        @Suppress("ConstantConditionIf")
         logger.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE
         return logger
     }
@@ -41,7 +40,7 @@ class AppModule {
     @Provides
     fun provideQueryInterceptor() = Interceptor { chain ->
         var request = chain.request()
-        val url = request.url().newBuilder().addQueryParameter("public_key", "444a9ef5-8a6b-429f-abdf-587639155d88").build()
+        val url = request.url().newBuilder().addQueryParameter("public_key", BuildConfig.PUBLIC_KEY).build()
         request = request.newBuilder().url(url).build()
         chain.proceed(request)
     }

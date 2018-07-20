@@ -1,4 +1,4 @@
-package br.com.mercadolivre.pagamentos.ui
+package br.com.mercadolivre.pagamentos.features
 
 import android.arch.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
