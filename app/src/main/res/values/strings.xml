@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pagamentos</string>
+    <string name="action_settings">Settings</string>
+    <string name="retry">RETRY</string>
+    <string name="no_connection">No internet connection</string>
+    <string name="generic_error">There was an error, would you like to try again?</string>
+</resources>
