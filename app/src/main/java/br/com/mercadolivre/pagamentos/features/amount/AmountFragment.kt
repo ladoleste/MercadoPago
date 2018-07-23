@@ -1,13 +1,17 @@
 package br.com.mercadolivre.pagamentos.features.amount
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.mercadolivre.pagamentos.R
-import br.com.mercadolivre.pagamentos.dto.PaymentMethod
+import br.com.mercadolivre.pagamentos.features.ChangeFragment
+import br.com.mercadolivre.pagamentos.global.getErrorMessage
+import kotlinx.android.synthetic.main.fragment_amount.*
 
 /**
  * A placeholder fragment containing a simple view.
@@ -17,24 +21,35 @@ class AmountFragment : Fragment() {
     private lateinit var viewModel: AmountViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         viewModel = ViewModelProviders.of(this).get(AmountViewModel::class.java)
-//        viewModel.getPaymentsMethods().observe(this, Observer(this::loadData))
-//        viewModel.getError().observe(this, Observer(this::handleError))
+        viewModel.getError().observe(this, Observer(this::handleError))
 
         return inflater.inflate(R.layout.fragment_amount, container, false)
     }
 
-    private fun loadData(payMethods: List<PaymentMethod>?) {
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+//        et_amount.error = "Invalid Credit Card Number"
+//
+//        RxTextView.textChanges(et_amount)
+//                .map { inputText -> inputText.isEmpty() || inputText.toString().matches(".9".toRegex()) }
+//                .subscribe { isValid -> mCreditCardInputLayout.setErrorEnabled(!isValid) }
+
+        bt_next.setOnClickListener {
+            val requireActivity = requireActivity()
+            if (requireActivity is ChangeFragment) {
+                viewModel.saveAmount(et_amount.text.toString().toDouble())
+                requireActivity.onChangeFragment("")
+            }
+        }
     }
 
     private fun handleError(it: Throwable?) {
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //viewModel.loadPaymentsMethods()
+        Snackbar.make(activity!!.window.decorView.rootView, it.getErrorMessage(), Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.retry) {
+                    viewModel.saveAmount(et_amount.text.toString().toDouble())
+                }
+                .show()
     }
 }

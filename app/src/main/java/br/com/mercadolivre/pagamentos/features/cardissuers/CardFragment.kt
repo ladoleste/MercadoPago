@@ -61,4 +61,9 @@ class CardFragment : Fragment() {
             viewModel.loadCardIssuers(it)
         }
     }
+
+    override fun onStop() {
+        viewModel.onStop()
+        super.onStop()
+    }
 }

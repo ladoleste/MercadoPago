@@ -1,6 +1,9 @@
 package br.com.mercadolivre.pagamentos.di
 
+import android.content.Context
+import android.content.SharedPreferences
 import br.com.mercadolivre.pagamentos.BuildConfig
+import br.com.mercadolivre.pagamentos.global.MlApplication
 import br.com.mercadolivre.pagamentos.global.MlApplication.Companion.apiUrl
 import br.com.mercadolivre.pagamentos.repository.MlApiService
 import br.com.mercadolivre.pagamentos.repository.MlRepository
@@ -69,5 +72,11 @@ class AppModule {
     @Provides
     @Singleton
     fun provideRepository(): MlRepository = MlRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun providesSharedPreferences(): SharedPreferences {
+        return MlApplication.instance.getSharedPreferences("MercadoPagoPreferences", Context.MODE_PRIVATE)!!
+    }
 
 }

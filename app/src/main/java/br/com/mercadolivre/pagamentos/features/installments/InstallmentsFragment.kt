@@ -65,4 +65,9 @@ class InstallmentsFragment : Fragment() {
         super.onResume()
         viewModel.loadInstallments()
     }
+
+    override fun onStop() {
+        viewModel.onStop()
+        super.onStop()
+    }
 }

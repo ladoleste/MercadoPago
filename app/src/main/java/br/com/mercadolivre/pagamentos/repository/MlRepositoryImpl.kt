@@ -1,5 +1,7 @@
 package br.com.mercadolivre.pagamentos.repository
 
+import android.content.SharedPreferences
+import androidx.core.content.edit
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import javax.inject.Inject
 
@@ -11,6 +13,9 @@ class MlRepositoryImpl : MlRepository {
     @Inject
     lateinit var api: MlApiService
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
     init {
         MlApplication.component.inject(this)
     }
@@ -20,4 +25,10 @@ class MlRepositoryImpl : MlRepository {
     override fun loadCardIssuers(id: String) = api.loadCardIssuers(id)
 
     override fun loadInstallments(amount: Double, id: String, issuer: Int) = api.loadInstallments(amount, id, issuer)
+
+    override fun saveAmount(amount: Double) {
+        sharedPreferences.edit {
+            putLong("amount", amount.toLong())
+        }
+    }
 }

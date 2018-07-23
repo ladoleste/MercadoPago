@@ -15,6 +15,14 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
 
     var step = 0
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        setSupportActionBar(toolbar)
+
+        addFragment(AmountFragment(), R.id.fl_holder)
+    }
+
     override fun onChangeFragment(id: String) {
 
         when {
@@ -32,26 +40,18 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
                 fragment.arguments = bundle
                 replaceFragment(fragment, R.id.fl_holder)
             }
-            step > 1 -> {
+            step == 2 -> {
                 val fragment = InstallmentsFragment()
                 val bundle = Bundle()
                 bundle.putString("id", id)
                 fragment.arguments = bundle
                 replaceFragment(fragment, R.id.fl_holder)
             }
+            step > 2 -> {
+                step = 0
+                onChangeFragment(id)
+            }
         }
         step++
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-
-        addFragment(AmountFragment(), R.id.fl_holder)
-
-        fab.setOnClickListener { _ ->
-            onChangeFragment("visa")
-        }
     }
 }

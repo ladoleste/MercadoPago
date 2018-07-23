@@ -8,4 +8,5 @@
     <string name="card_issuer">Card Issuer</string>
     <string name="input_amount">Informe o valor</string>
     <string name="hint" />
+    <string name="next">Next</string>
 </resources>

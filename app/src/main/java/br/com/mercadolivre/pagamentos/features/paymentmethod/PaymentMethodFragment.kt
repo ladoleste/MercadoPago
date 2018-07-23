@@ -59,4 +59,9 @@ class PaymentMethodFragment : Fragment() {
         super.onResume()
         viewModel.loadPaymentsMethods()
     }
+
+    override fun onStop() {
+        viewModel.onStop()
+        super.onStop()
+    }
 }
