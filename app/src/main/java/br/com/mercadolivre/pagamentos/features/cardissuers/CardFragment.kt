@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.mercadolivre.pagamentos.R
-import br.com.mercadolivre.pagamentos.dto.Bank
+import br.com.mercadolivre.pagamentos.dto.CardIssuer
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import kotlinx.android.synthetic.main.fragment_payment_method.*
@@ -31,14 +31,14 @@ class CardFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_payment_method, container, false)
     }
 
-    private fun loadData(banks: List<Bank>?) {
+    private fun loadData(cardIssuers: List<CardIssuer>?) {
         progress_bar.visibility = View.GONE
-        banks?.let {
+        cardIssuers?.let {
             rv_payments.layoutManager = LinearLayoutManager(requireActivity())
-            rv_payments.adapter = CardAdapter(banks) {
+            rv_payments.adapter = CardAdapter(cardIssuers) {
                 val requireActivity = requireActivity()
                 if (requireActivity is ChangeFragment) {
-                    viewModel.saveBank(it)
+                    viewModel.saveCardIssuer(it)
                     requireActivity.onNextStep()
                 }
             }
@@ -52,16 +52,14 @@ class CardFragment : Fragment() {
         Snackbar.make(activity!!.window.decorView.rootView, it.getErrorMessage(), Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry) {
                     progress_bar.visibility = View.VISIBLE
-                    viewModel.loadCardIssuers("visa")
+                    viewModel.loadCardIssuers()
                 }
                 .show()
     }
 
     override fun onResume() {
         super.onResume()
-        arguments?.getString("id")?.let {
-            viewModel.loadCardIssuers(it)
-        }
+        viewModel.loadCardIssuers()
     }
 
     override fun onStop() {

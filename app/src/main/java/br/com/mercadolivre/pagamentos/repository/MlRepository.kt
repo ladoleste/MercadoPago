@@ -1,7 +1,8 @@
 package br.com.mercadolivre.pagamentos.repository
 
-import br.com.mercadolivre.pagamentos.dto.Bank
+import br.com.mercadolivre.pagamentos.dto.CardIssuer
 import br.com.mercadolivre.pagamentos.dto.Installments
+import br.com.mercadolivre.pagamentos.dto.PayerCostsItem
 import br.com.mercadolivre.pagamentos.dto.PaymentMethod
 import io.reactivex.Single
 
@@ -10,8 +11,16 @@ import io.reactivex.Single
  */
 interface MlRepository {
     fun loadPaymentMethods(): Single<List<PaymentMethod>>
-    fun loadCardIssuers(id: String): Single<List<Bank>>
-    fun loadInstallments(amount: Double, id: String, issuer: Int): Single<List<Installments>>
+    fun loadCardIssuers(id: String): Single<List<CardIssuer>>
+    fun loadInstallments(amount: Double, payment_method_id: String, issuer: Int): Single<List<Installments>>
+
     fun saveAmount(amount: Double)
-    fun saveBank(bank: Bank)
+    fun saveCardIssuer(cardIssuer: CardIssuer)
+    fun savePaymentMethod(paymentMethod: PaymentMethod)
+    fun savePayCost(payCost: PayerCostsItem)
+
+    fun getAmount(): Double
+    fun getCardIssuer(): CardIssuer
+    fun getPaymentMethod(): PaymentMethod
+    fun getPayCost(): PayerCostsItem
 }

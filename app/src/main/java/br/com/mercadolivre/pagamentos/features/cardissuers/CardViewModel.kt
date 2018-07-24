@@ -2,7 +2,7 @@ package br.com.mercadolivre.pagamentos.features.cardissuers
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import br.com.mercadolivre.pagamentos.dto.Bank
+import br.com.mercadolivre.pagamentos.dto.CardIssuer
 import br.com.mercadolivre.pagamentos.features.BaseViewModel
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import br.com.mercadolivre.pagamentos.repository.MlRepository
@@ -18,19 +18,22 @@ class CardViewModel : BaseViewModel() {
     @Inject
     lateinit var repo: MlRepository
 
-    private val payMethods = MutableLiveData<List<Bank>>()
+    private val payMethods = MutableLiveData<List<CardIssuer>>()
     private val error = MutableLiveData<Throwable>()
 
     init {
         MlApplication.component.inject(this)
     }
 
-    fun getCardIssuers(): LiveData<List<Bank>> = payMethods
+    fun getCardIssuers(): LiveData<List<CardIssuer>> = payMethods
 
     fun getError(): LiveData<Throwable> = error
 
-    fun loadCardIssuers(id: String) {
-        cDispose.add(repo.loadCardIssuers(id)
+    fun loadCardIssuers() {
+
+        val paymentMethod = repo.getPaymentMethod()
+
+        cDispose.add(repo.loadCardIssuers(paymentMethod.id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { t -> Timber.e(t) }
                 .subscribe({
@@ -40,9 +43,9 @@ class CardViewModel : BaseViewModel() {
                 }))
     }
 
-    fun saveBank(bank: Bank) {
+    fun saveCardIssuer(cardIssuer: CardIssuer) {
         try {
-            repo.saveBank(bank)
+            repo.saveCardIssuer(cardIssuer)
         } catch (e: Exception) {
             error.postValue(e)
         }

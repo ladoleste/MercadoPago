@@ -5,6 +5,7 @@ import br.com.mercadolivre.pagamentos.BuildConfig
 import br.com.mercadolivre.pagamentos.di.AppComponent
 import br.com.mercadolivre.pagamentos.di.AppModule
 import br.com.mercadolivre.pagamentos.di.DaggerAppComponent
+import com.facebook.stetho.Stetho
 import timber.log.Timber
 
 class MlApplication : Application() {
@@ -13,6 +14,7 @@ class MlApplication : Application() {
         super.onCreate()
         Timber.plant(if (BuildConfig.DEBUG) DebugLog() else ReleaseLog())
         instance = this
+        Stetho.initializeWithDefaults(this)
         component = DaggerAppComponent.builder()
                 .appModule(AppModule())
                 .build()

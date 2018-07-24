@@ -39,4 +39,8 @@ class PaymentMethodViewModel : BaseViewModel() {
                     error.postValue(it)
                 }))
     }
+
+    fun savePaymentMethod(it: PaymentMethod) {
+        repo.savePaymentMethod(it)
+    }
 }

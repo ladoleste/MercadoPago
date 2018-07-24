@@ -37,6 +37,7 @@ class PaymentMethodFragment : Fragment() {
             rv_payments.layoutManager = LinearLayoutManager(requireActivity())
             rv_payments.adapter = PaymentMethodAdapter(payMethods) {
                 val requireActivity = requireActivity()
+                viewModel.savePaymentMethod(it)
                 if (requireActivity is ChangeFragment)
                     requireActivity.onNextStep()
             }

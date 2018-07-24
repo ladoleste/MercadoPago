@@ -1,10 +1,12 @@
 package br.com.mercadolivre.pagamentos.features.amount
 
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,9 +24,23 @@ class AmountFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProviders.of(this).get(AmountViewModel::class.java)
+        viewModel.getSummary().observe(this, Observer(this::showSummary))
         viewModel.getError().observe(this, Observer(this::handleError))
 
         return inflater.inflate(R.layout.fragment_amount, container, false)
+    }
+
+    private fun showSummary(list: List<String>?) {
+        list?.let {
+
+            val join = TextUtils.join("\n\n", it)
+
+            AlertDialog.Builder(requireContext())
+                    .setMessage(join)
+                    .setTitle("Summary")
+                    .setPositiveButton("OK", null)
+                    .create().show()
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -43,6 +59,11 @@ class AmountFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadSummary()
     }
 
     private fun handleError(it: Throwable?) {

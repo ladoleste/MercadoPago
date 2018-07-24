@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ChangeFragment {
 
-    var step = 0
+    var step = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +27,20 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
 
         when {
             step == 0 -> {
-                val fragment = PaymentMethodFragment()
+                val fragment = AmountFragment()
                 replaceFragment(fragment, R.id.fl_holder)
             }
             step == 1 -> {
-                replaceFragment(CardFragment(), R.id.fl_holder)
+                val fragment = PaymentMethodFragment()
+                replaceFragment(fragment, R.id.fl_holder)
             }
             step == 2 -> {
+                replaceFragment(CardFragment(), R.id.fl_holder)
+            }
+            step == 3 -> {
                 replaceFragment(InstallmentsFragment(), R.id.fl_holder)
             }
-            step > 2 -> {
+            step > 3 -> {
                 step = 0
                 onNextStep()
             }

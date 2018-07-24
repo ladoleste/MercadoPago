@@ -15,6 +15,7 @@ import br.com.mercadolivre.pagamentos.dto.PayerCostsItem
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import kotlinx.android.synthetic.main.fragment_payment_method.*
+import timber.log.Timber
 
 /**
  * A placeholder fragment containing a simple view.
@@ -26,22 +27,24 @@ class InstallmentsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         viewModel = ViewModelProviders.of(this).get(InstallmentsViewModel::class.java)
-        viewModel.getInstallments().observe(this, Observer(this::loadData))
-        viewModel.getPayCosts().observe(this, Observer(this::loadData2))
+        viewModel.getInstallments().observe(this, Observer(this::loadInstallments))
+        viewModel.getPayCosts().observe(this, Observer(this::loadPayCosts))
         viewModel.getError().observe(this, Observer(this::handleError))
 
         return inflater.inflate(R.layout.fragment_payment_method, container, false)
     }
 
-    private fun loadData(installments: Installments?) {
+    private fun loadInstallments(installment: Installments?) {
+        Timber.d(installment.toString())
         progress_bar.visibility = View.GONE
     }
 
-    private fun loadData2(payCosts: List<PayerCostsItem>?) {
+    private fun loadPayCosts(payCosts: List<PayerCostsItem>?) {
         progress_bar.visibility = View.GONE
         payCosts?.let {
             rv_payments.layoutManager = LinearLayoutManager(requireActivity())
             rv_payments.adapter = ItemCostAdapter(payCosts) {
+                viewModel.savePayCost(it)
                 val requireActivity = requireActivity()
                 if (requireActivity is ChangeFragment)
                     requireActivity.onNextStep()

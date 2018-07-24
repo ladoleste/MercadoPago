@@ -33,14 +33,32 @@ class InstallmentsViewModel : BaseViewModel() {
     fun getError(): LiveData<Throwable> = error
 
     fun loadInstallments() {
-        cDispose.add(repo.loadInstallments(5000.0, "visa", 296)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError { t -> Timber.e(t) }
-                .subscribe({
-                    installments.postValue(it.first())
-                    payCosts.postValue(it.first().payerCosts)
-                }, {
-                    error.postValue(it)
-                }))
+        try {
+            val amount = repo.getAmount()
+            val paymentMethod = repo.getPaymentMethod()
+            val issuer = repo.getCardIssuer()
+
+            cDispose.add(repo.loadInstallments(amount, paymentMethod.id, issuer.id.toInt())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError { t -> Timber.e(t) }
+                    .subscribe({
+                        installments.postValue(it.first())
+                        payCosts.postValue(it.first().payerCosts)
+                    }, {
+                        error.postValue(it)
+                    }))
+        } catch (e: Exception) {
+            Timber.e(e)
+            error.postValue(e)
+        }
+    }
+
+    fun savePayCost(payCost: PayerCostsItem) {
+        try {
+            repo.savePayCost(payCost)
+        } catch (e: Exception) {
+            Timber.e(e)
+            error.postValue(e)
+        }
     }
 }
