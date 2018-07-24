@@ -85,6 +85,13 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
                     .setPositiveButton(getString(R.string.ok), null)
                     .create().show()
         }
+
+        viewModel.removeObservers(this)
+    }
+
+    override fun onStop() {
+        viewModel.onStop()
+        super.onStop()
     }
 
     override fun onBackPressed() {
