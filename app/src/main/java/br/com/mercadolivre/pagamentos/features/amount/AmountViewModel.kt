@@ -3,7 +3,6 @@ package br.com.mercadolivre.pagamentos.features.amount
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.features.BaseViewModel
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import br.com.mercadolivre.pagamentos.repository.MlRepository
@@ -19,33 +18,12 @@ class AmountViewModel : BaseViewModel() {
     lateinit var repo: MlRepository
 
     private val error = MutableLiveData<Throwable>()
-    private val summary = MutableLiveData<List<String>>()
 
     init {
         MlApplication.component.inject(this)
     }
 
     fun getError(): LiveData<Throwable> = error
-
-    fun getSummary(): LiveData<List<String>> {
-        return summary
-    }
-
-    fun loadSummary() {
-        val amount = repo.getAmount()
-        val cardIssuer = repo.getCardIssuer()
-        val payCost = repo.getPayCost()
-        val paymentMethod = repo.getPaymentMethod()
-
-        if (amount > 0) {
-            val summaryList = mutableListOf<String>()
-            summaryList.add(MlApplication.instance.getString(R.string.summary_amount, amount))
-            summaryList.add(MlApplication.instance.getString(R.string.summary_issuer, cardIssuer.name))
-            summaryList.add(MlApplication.instance.getString(R.string.summary_payment_method, paymentMethod.name))
-            summaryList.add(MlApplication.instance.getString(R.string.summary_pay_cost, payCost.recommendedMessage))
-            summary.postValue(summaryList)
-        }
-    }
 
     fun saveAmount(amount: Double) {
         try {
@@ -58,6 +36,5 @@ class AmountViewModel : BaseViewModel() {
 
     fun removeObservers(owner: LifecycleOwner) {
         error.removeObservers(owner)
-        summary.removeObservers(owner)
     }
 }
