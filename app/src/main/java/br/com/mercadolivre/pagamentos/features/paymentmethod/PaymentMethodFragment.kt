@@ -62,6 +62,7 @@ class PaymentMethodFragment : Fragment() {
     }
 
     override fun onStop() {
+        viewModel.removeObservers(this)
         viewModel.onStop()
         super.onStop()
     }

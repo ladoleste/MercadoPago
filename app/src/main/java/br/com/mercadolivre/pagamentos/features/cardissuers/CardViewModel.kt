@@ -1,5 +1,6 @@
 package br.com.mercadolivre.pagamentos.features.cardissuers
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import br.com.mercadolivre.pagamentos.dto.CardIssuer
@@ -18,14 +19,14 @@ class CardViewModel : BaseViewModel() {
     @Inject
     lateinit var repo: MlRepository
 
-    private val payMethods = MutableLiveData<List<CardIssuer>>()
+    private val cardIssuers = MutableLiveData<List<CardIssuer>>()
     private val error = MutableLiveData<Throwable>()
 
     init {
         MlApplication.component.inject(this)
     }
 
-    fun getCardIssuers(): LiveData<List<CardIssuer>> = payMethods
+    fun getCardIssuers(): LiveData<List<CardIssuer>> = cardIssuers
 
     fun getError(): LiveData<Throwable> = error
 
@@ -37,7 +38,7 @@ class CardViewModel : BaseViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { t -> Timber.e(t) }
                 .subscribe({
-                    payMethods.postValue(it)
+                    cardIssuers.postValue(it)
                 }, {
                     error.postValue(it)
                 }))
@@ -49,5 +50,9 @@ class CardViewModel : BaseViewModel() {
         } catch (e: Exception) {
             error.postValue(e)
         }
+    }
+
+    fun removeObservers(owner: LifecycleOwner) {
+        cardIssuers.removeObservers(owner)
     }
 }

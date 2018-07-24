@@ -70,6 +70,7 @@ class InstallmentsFragment : Fragment() {
     }
 
     override fun onStop() {
+        viewModel.removeObservers(this)
         viewModel.onStop()
         super.onStop()
     }

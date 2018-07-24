@@ -62,7 +62,11 @@ class MlRepositoryImpl : MlRepository {
 
     override fun getPaymentMethod(): PaymentMethod {
         val r = sharedPreferences.getString(PAYMENT_METHOD, "")
-        return Gson().fromJson(r, PaymentMethod::class.java)
+
+        return if (r == "")
+            PaymentMethod()
+        else
+            Gson().fromJson(r, PaymentMethod::class.java)
     }
 
     override fun getAmount(): Double {
@@ -71,11 +75,18 @@ class MlRepositoryImpl : MlRepository {
 
     override fun getCardIssuer(): CardIssuer {
         val r = sharedPreferences.getString(CARD_ISSUER, "")
-        return Gson().fromJson(r, CardIssuer::class.java)
+        return if (r == "")
+            CardIssuer()
+        else
+            Gson().fromJson(r, CardIssuer::class.java)
     }
 
     override fun getPayCost(): PayerCostsItem {
         val r = sharedPreferences.getString(PAY_COST, "")
-        return Gson().fromJson(r, PayerCostsItem::class.java)
+
+        return if (r == "")
+            PayerCostsItem()
+        else
+            Gson().fromJson(r, PayerCostsItem::class.java)
     }
 }

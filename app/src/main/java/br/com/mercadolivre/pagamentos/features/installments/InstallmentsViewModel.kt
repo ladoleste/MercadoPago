@@ -1,5 +1,6 @@
 package br.com.mercadolivre.pagamentos.features.installments
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import br.com.mercadolivre.pagamentos.dto.Installments
@@ -60,5 +61,12 @@ class InstallmentsViewModel : BaseViewModel() {
             Timber.e(e)
             error.postValue(e)
         }
+    }
+
+    fun removeObservers(owner: LifecycleOwner) {
+        installments.removeObservers(owner)
+        payCosts.removeObservers(owner)
+        error.removeObservers(owner)
+
     }
 }

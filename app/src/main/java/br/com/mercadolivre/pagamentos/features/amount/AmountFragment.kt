@@ -74,7 +74,7 @@ class AmountFragment : Fragment() {
     }
 
     override fun onStop() {
-        viewModel.getSummary().removeObservers(this)
+        viewModel.removeObservers(this)
         viewModel.onStop()
         super.onStop()
     }

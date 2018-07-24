@@ -47,10 +47,11 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
     }
 
     override fun onBackPressed() {
+        step--
+
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStackImmediate()
         } else {
-            step--
             super.onBackPressed()
         }
     }

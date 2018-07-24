@@ -64,6 +64,7 @@ class CardFragment : Fragment() {
 
     override fun onStop() {
         viewModel.onStop()
+        viewModel.removeObservers(this)
         super.onStop()
     }
 }

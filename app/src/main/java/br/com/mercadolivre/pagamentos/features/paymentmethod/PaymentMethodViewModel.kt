@@ -1,5 +1,6 @@
 package br.com.mercadolivre.pagamentos.features.paymentmethod
 
+import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import br.com.mercadolivre.pagamentos.dto.PaymentMethod
@@ -42,5 +43,10 @@ class PaymentMethodViewModel : BaseViewModel() {
 
     fun savePaymentMethod(it: PaymentMethod) {
         repo.savePaymentMethod(it)
+    }
+
+    fun removeObservers(owner: LifecycleOwner) {
+        payMethods.removeObservers(owner)
+        error.removeObservers(owner)
     }
 }
