@@ -27,7 +27,10 @@ fun Throwable?.getErrorMessage() = when (this) {
 }
 
 inline fun FragmentManager.transaction(func: FragmentTransaction.() -> FragmentTransaction) {
-    beginTransaction().func().commit()
+    beginTransaction()
+            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+            .func()
+            .commit()
 }
 
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {

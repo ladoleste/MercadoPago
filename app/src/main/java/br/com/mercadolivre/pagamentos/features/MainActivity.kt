@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
         }
 
         if (supportFragmentManager.backStackEntryCount > 0) {
-            supportFragmentManager.popBackStackImmediate()
+            supportFragmentManager.popBackStack()
         } else {
             super.onBackPressed()
         }
