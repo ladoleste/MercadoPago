@@ -44,7 +44,7 @@ class InstallmentsFragment : Fragment() {
             rv_payments.adapter = ItemCostAdapter(payCosts) {
                 val requireActivity = requireActivity()
                 if (requireActivity is ChangeFragment)
-                    requireActivity.onChangeFragment("x")
+                    requireActivity.onNextStep()
             }
         }
     }

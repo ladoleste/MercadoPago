@@ -13,4 +13,5 @@ interface MlRepository {
     fun loadCardIssuers(id: String): Single<List<Bank>>
     fun loadInstallments(amount: Double, id: String, issuer: Int): Single<List<Installments>>
     fun saveAmount(amount: Double)
+    fun saveBank(bank: Bank)
 }

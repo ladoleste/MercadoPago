@@ -30,17 +30,17 @@ class AmountFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        et_amount.error = "Invalid Credit Card Number"
-//
-//        RxTextView.textChanges(et_amount)
-//                .map { inputText -> inputText.isEmpty() || inputText.toString().matches(".9".toRegex()) }
-//                .subscribe { isValid -> mCreditCardInputLayout.setErrorEnabled(!isValid) }
-
         bt_next.setOnClickListener {
-            val requireActivity = requireActivity()
-            if (requireActivity is ChangeFragment) {
-                viewModel.saveAmount(et_amount.text.toString().toDouble())
-                requireActivity.onChangeFragment("")
+
+            val mainActivity = requireActivity()
+            if (mainActivity is ChangeFragment) {
+                val amount = et_amount.text.toString().toDoubleOrNull()
+                if (amount == null || amount == 0.0) {
+                    et_amount.error = "Required value"
+                } else {
+                    viewModel.saveAmount(amount)
+                    mainActivity.onNextStep()
+                }
             }
         }
     }

@@ -38,7 +38,7 @@ class PaymentMethodFragment : Fragment() {
             rv_payments.adapter = PaymentMethodAdapter(payMethods) {
                 val requireActivity = requireActivity()
                 if (requireActivity is ChangeFragment)
-                    requireActivity.onChangeFragment(it.id)
+                    requireActivity.onNextStep()
             }
         }
     }

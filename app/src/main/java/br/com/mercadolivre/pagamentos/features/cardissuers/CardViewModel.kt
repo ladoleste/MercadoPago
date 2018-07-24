@@ -39,4 +39,12 @@ class CardViewModel : BaseViewModel() {
                     error.postValue(it)
                 }))
     }
+
+    fun saveBank(bank: Bank) {
+        try {
+            repo.saveBank(bank)
+        } catch (e: Exception) {
+            error.postValue(e)
+        }
+    }
 }

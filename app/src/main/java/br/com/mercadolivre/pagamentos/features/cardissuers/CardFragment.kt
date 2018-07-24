@@ -37,8 +37,10 @@ class CardFragment : Fragment() {
             rv_payments.layoutManager = LinearLayoutManager(requireActivity())
             rv_payments.adapter = CardAdapter(banks) {
                 val requireActivity = requireActivity()
-                if (requireActivity is ChangeFragment)
-                    requireActivity.onChangeFragment(it.id)
+                if (requireActivity is ChangeFragment) {
+                    viewModel.saveBank(it)
+                    requireActivity.onNextStep()
+                }
             }
         }
     }

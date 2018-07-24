@@ -2,6 +2,7 @@ package br.com.mercadolivre.pagamentos.repository
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import br.com.mercadolivre.pagamentos.dto.Bank
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import javax.inject.Inject
 
@@ -29,6 +30,12 @@ class MlRepositoryImpl : MlRepository {
     override fun saveAmount(amount: Double) {
         sharedPreferences.edit {
             putLong("amount", amount.toLong())
+        }
+    }
+
+    override fun saveBank(bank: Bank) {
+        sharedPreferences.edit {
+            putString("bank", bank.id)
         }
     }
 }
