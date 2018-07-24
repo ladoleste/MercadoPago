@@ -31,7 +31,7 @@ class InstallmentsFragment : Fragment() {
         viewModel.getPayCosts().observe(this, Observer(this::loadPayCosts))
         viewModel.getError().observe(this, Observer(this::handleError))
 
-        return inflater.inflate(R.layout.fragment_payment_method, container, false)
+        return inflater.inflate(R.layout.fragment_installments, container, false)
     }
 
     private fun loadInstallments(installment: Installments?) {

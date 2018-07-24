@@ -13,7 +13,7 @@ import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.dto.CardIssuer
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
-import kotlinx.android.synthetic.main.fragment_payment_method.*
+import kotlinx.android.synthetic.main.fragment_card_issuer.*
 
 /**
  * A placeholder fragment containing a simple view.
@@ -28,18 +28,23 @@ class CardFragment : Fragment() {
         viewModel.getCardIssuers().observe(this, Observer(this::loadData))
         viewModel.getError().observe(this, Observer(this::handleError))
 
-        return inflater.inflate(R.layout.fragment_payment_method, container, false)
+        return inflater.inflate(R.layout.fragment_card_issuer, container, false)
     }
 
     private fun loadData(cardIssuers: List<CardIssuer>?) {
         progress_bar.visibility = View.GONE
         cardIssuers?.let {
-            rv_payments.layoutManager = LinearLayoutManager(requireActivity())
-            rv_payments.adapter = CardAdapter(cardIssuers) {
-                val requireActivity = requireActivity()
-                if (requireActivity is ChangeFragment) {
-                    viewModel.saveCardIssuer(it)
-                    requireActivity.onNextStep()
+            if (cardIssuers.isEmpty()) {
+                tv_no_items.visibility = View.VISIBLE
+            } else {
+                tv_no_items.visibility = View.GONE
+                rv_payments.layoutManager = LinearLayoutManager(requireActivity())
+                rv_payments.adapter = CardAdapter(cardIssuers) {
+                    val requireActivity = requireActivity()
+                    if (requireActivity is ChangeFragment) {
+                        viewModel.saveCardIssuer(it)
+                        requireActivity.onNextStep()
+                    }
                 }
             }
         }

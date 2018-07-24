@@ -1,4 +1,5 @@
 <resources>
+    <string name="no_items">No options for the selected Payment Method</string>
     <string name="app_name">Payments</string>
     <string name="retry">RETRY</string>
     <string name="no_connection">No internet connection</string>
