@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.dto.PaymentMethod
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
+import br.com.mercadolivre.pagamentos.features.MainActivity
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import kotlinx.android.synthetic.main.fragment_payment_method.*
 
@@ -29,6 +30,11 @@ class PaymentMethodFragment : Fragment() {
         viewModel.getError().observe(this, Observer(this::handleError))
 
         return inflater.inflate(R.layout.fragment_payment_method, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.title_payment_method)
     }
 
     private fun loadData(payMethods: List<PaymentMethod>?) {

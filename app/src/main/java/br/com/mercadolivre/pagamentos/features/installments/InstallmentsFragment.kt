@@ -13,6 +13,7 @@ import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.dto.Installments
 import br.com.mercadolivre.pagamentos.dto.PayerCostsItem
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
+import br.com.mercadolivre.pagamentos.features.MainActivity
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import kotlinx.android.synthetic.main.fragment_payment_method.*
 import timber.log.Timber
@@ -32,6 +33,11 @@ class InstallmentsFragment : Fragment() {
         viewModel.getError().observe(this, Observer(this::handleError))
 
         return inflater.inflate(R.layout.fragment_installments, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.title_installments)
     }
 
     private fun loadInstallments(installment: Installments?) {

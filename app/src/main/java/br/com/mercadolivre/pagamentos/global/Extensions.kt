@@ -10,13 +10,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import br.com.mercadolivre.pagamentos.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 fun ViewGroup.inflate(layoutId: Int): View = LayoutInflater.from(context).inflate(layoutId, this, false)
 
 fun ImageView.loadImage(imageUrl: String?) {
-    Glide.with(context).load(imageUrl).into(this)
+    Glide.with(context).load(imageUrl).apply(RequestOptions().placeholder(R.mipmap.ic_launcher)).into(this)
 }
 
 fun Throwable?.getErrorMessage() = when (this) {

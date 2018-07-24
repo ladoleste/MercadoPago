@@ -16,4 +16,7 @@
     <string name="summary_issuer">Cartão: %1$s</string>
     <string name="summary_payment_method">Método de pagamento: %1$s</string>
     <string name="summary_pay_cost">Parcelas: %1$s</string>
+    <string name="title_payment_method">Meio de pagamento</string>
+    <string name="title_card_issuer">Banco</string>
+    <string name="title_installments">Parcelas</string>
 </resources>
