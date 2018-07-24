@@ -37,8 +37,8 @@ class AmountFragment : Fragment() {
 
             AlertDialog.Builder(requireContext())
                     .setMessage(join)
-                    .setTitle("Summary")
-                    .setPositiveButton("OK", null)
+                    .setTitle(getString(R.string.summary))
+                    .setPositiveButton(getString(R.string.ok), null)
                     .create().show()
         }
     }
@@ -52,7 +52,7 @@ class AmountFragment : Fragment() {
             if (mainActivity is ChangeFragment) {
                 val amount = et_amount.text.toString().toDoubleOrNull()
                 if (amount == null || amount == 0.0) {
-                    et_amount.error = "Required value"
+                    et_amount.error = getString(R.string.amount_validation)
                 } else {
                     viewModel.saveAmount(amount)
                     mainActivity.onNextStep()

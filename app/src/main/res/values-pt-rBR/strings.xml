@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Mercado Pago - Pagamentos</string>
+    <string name="retry">TENTAR NOVAMENTE</string>
+    <string name="no_connection">Sem conexão com a internet</string>
+    <string name="generic_error">Ocorreu um erro, tentar novamente?</string>
+    <string name="payment_method">Método de pagamento</string>
+    <string name="card_issuer">Cartão</string>
+    <string name="input_amount">Informe o valor</string>
+    <string name="hint" />
+    <string name="next">Próximo</string>
+    <string name="summary">Resumo</string>
+    <string name="amount_validation">Por favor informe o valor</string>
+    <string name="ok">OK</string>
+    <string name="summary_amount">Valor: %1$f</string>
+    <string name="summary_issuer">Cartão: %1$s</string>
+    <string name="summary_payment_method">Método de pagamento: %1$s</string>
+    <string name="summary_pay_cost">Parcelas: %1$s</string>
+</resources>

@@ -2,6 +2,7 @@ package br.com.mercadolivre.pagamentos.features.amount
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.features.BaseViewModel
 import br.com.mercadolivre.pagamentos.global.MlApplication
 import br.com.mercadolivre.pagamentos.repository.MlRepository
@@ -36,10 +37,10 @@ class AmountViewModel : BaseViewModel() {
         val paymentMethod = repo.getPaymentMethod()
 
         val summaryList = mutableListOf<String>()
-        summaryList.add("Amount: $amount")
-        summaryList.add("Card Issumer: ${cardIssuer.name}")
-        summaryList.add("Payment Method: ${paymentMethod.name}")
-        summaryList.add("Pay Cost: ${payCost.recommendedMessage}")
+        summaryList.add(MlApplication.instance.getString(R.string.summary_amount, amount))
+        summaryList.add(MlApplication.instance.getString(R.string.summary_issuer, cardIssuer.name))
+        summaryList.add(MlApplication.instance.getString(R.string.summary_payment_method, paymentMethod.name))
+        summaryList.add(MlApplication.instance.getString(R.string.summary_pay_cost, payCost.recommendedMessage))
         summary.postValue(summaryList)
     }
 
