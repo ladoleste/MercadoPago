@@ -22,6 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        disable 'CommitPrefEdits'
+    }
 }
 
 def supportLibVersion = '27.1.1'
