@@ -22,6 +22,6 @@ class DebugLog : Timber.DebugTree() {
             } else {
                 Log.println(priority, tag, message)
             }
-        } ?: Log.println(priority, "MyApp", message)
+        } ?: Log.println(priority, "MercadoPago", message)
     }
 }

@@ -39,6 +39,7 @@ class PaymentMethodFragment : Fragment() {
 
     private fun loadData(payMethods: List<PaymentMethod>?) {
         progress_bar.visibility = View.GONE
+        tv_loading_message.visibility = View.GONE
         payMethods?.let {
             rv_payments.layoutManager = LinearLayoutManager(requireActivity())
             rv_payments.adapter = PaymentMethodAdapter(payMethods) {

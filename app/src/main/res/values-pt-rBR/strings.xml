@@ -19,4 +19,7 @@
     <string name="title_payment_method">Meio de pagamento</string>
     <string name="title_card_issuer">Banco</string>
     <string name="title_installments">Parcelas</string>
+    <string name="loading_pay_methods">Carregando formas de pagamento</string>
+    <string name="loading_banks">Carregando bancos</string>
+    <string name="loading_installments">Carregando parcelas</string>
 </resources>

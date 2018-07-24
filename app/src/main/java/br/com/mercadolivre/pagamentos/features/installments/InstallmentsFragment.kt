@@ -15,7 +15,7 @@ import br.com.mercadolivre.pagamentos.dto.PayerCostsItem
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
 import br.com.mercadolivre.pagamentos.features.MainActivity
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
-import kotlinx.android.synthetic.main.fragment_payment_method.*
+import kotlinx.android.synthetic.main.fragment_installments.*
 import timber.log.Timber
 
 /**
@@ -43,10 +43,10 @@ class InstallmentsFragment : Fragment() {
     private fun loadInstallments(installment: Installments?) {
         Timber.d(installment.toString())
         progress_bar.visibility = View.GONE
+        tv_loading_message.visibility = View.GONE
     }
 
     private fun loadPayCosts(payCosts: List<PayerCostsItem>?) {
-        progress_bar.visibility = View.GONE
         payCosts?.let {
             rv_payments.layoutManager = LinearLayoutManager(requireActivity())
             rv_payments.adapter = ItemCostAdapter(payCosts) {

@@ -39,6 +39,7 @@ class CardFragment : Fragment() {
 
     private fun loadData(cardIssuers: List<CardIssuer>?) {
         progress_bar.visibility = View.GONE
+        tv_loading_message.visibility = View.GONE
         cardIssuers?.let {
             if (cardIssuers.isEmpty()) {
                 tv_no_items.visibility = View.VISIBLE
