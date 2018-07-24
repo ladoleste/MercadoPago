@@ -37,7 +37,9 @@ class InstallmentsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = getString(R.string.title_installments)
+        val supportActionBar = (activity as MainActivity).supportActionBar!!
+        supportActionBar.title = getString(R.string.title_installments)
+        supportActionBar.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun loadInstallments(installment: Installments?) {

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.features.ChangeFragment
+import br.com.mercadolivre.pagamentos.features.MainActivity
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import kotlinx.android.synthetic.main.fragment_amount.*
 
@@ -28,6 +29,10 @@ class AmountFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        val supportActionBar = (activity as MainActivity).supportActionBar!!
+        supportActionBar.title = getString(R.string.app_name)
+        supportActionBar.setDisplayHomeAsUpEnabled(false)
 
         bt_next.setOnClickListener {
 

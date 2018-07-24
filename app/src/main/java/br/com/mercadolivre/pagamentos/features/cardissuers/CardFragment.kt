@@ -34,7 +34,10 @@ class CardFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = getString(R.string.title_card_issuer)
+
+        val supportActionBar = (activity as MainActivity).supportActionBar!!
+        supportActionBar.title = getString(R.string.title_card_issuer)
+        supportActionBar.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun loadData(cardIssuers: List<CardIssuer>?) {

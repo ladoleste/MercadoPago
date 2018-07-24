@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.view.MenuItem
 import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.features.amount.AmountFragment
 import br.com.mercadolivre.pagamentos.features.cardissuers.CardFragment
@@ -58,6 +59,11 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
                 onNextStep()
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        onBackPressed()
+        return super.onOptionsItemSelected(item)
     }
 
     private fun callSummary() {

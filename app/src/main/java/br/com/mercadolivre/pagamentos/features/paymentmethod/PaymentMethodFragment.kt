@@ -34,7 +34,9 @@ class PaymentMethodFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity as MainActivity).supportActionBar?.title = getString(R.string.title_payment_method)
+        val supportActionBar = (activity as MainActivity).supportActionBar!!
+        supportActionBar.title = getString(R.string.title_payment_method)
+        supportActionBar.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun loadData(payMethods: List<PaymentMethod>?) {
