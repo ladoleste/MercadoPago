@@ -2,12 +2,10 @@
 
 ## Considerações
 
-Projeto executado com ModelView e LiveData do Archecture Components
+Projeto executado com no estilo MVVM usando do Archtecture Components (ViewModel e LiveData), injeção de dependência com Dagger2 e Networking com Retrofit.
 
-Poderia estar bem melhor mas por problemas particulares teve que ser executado em um curto espaço de tempo.
+100% Kotlin
 
-Em caso de mais tempo poderia incluir: Testes unitários e instrumentados, melhorias na arquitetura das informações (como categorização dos itens da lista), implementação de Interactor, melhor UI e outras melhorias menores.
-
-Agradeço pela oportunidade e espero por uma chance de mostrar um pouco mais do que a minha experiência tem a contribuir.
+Em caso de mais tempo poderia incluir os testes unitários e instrumentados e adicionar outras melhorias menores.
 
 Obrigado!

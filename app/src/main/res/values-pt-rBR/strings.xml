@@ -5,7 +5,6 @@
     <string name="no_connection">Sem conexão com a internet</string>
     <string name="generic_error">Ocorreu um erro, tentar novamente?</string>
     <string name="payment_method">Método de pagamento</string>
-    <string name="card_issuer">Cartão</string>
     <string name="input_amount">Informe o valor</string>
     <string name="hint" />
     <string name="next">Próximo</string>

@@ -5,7 +5,6 @@
     <string name="no_connection">No internet connection</string>
     <string name="generic_error">There was an error, would you like to try again?</string>
     <string name="payment_method">Payment Method</string>
-    <string name="card_issuer">Card Issuer</string>
     <string name="input_amount">Value is required</string>
     <string name="hint" />
     <string name="next">Next</string>
