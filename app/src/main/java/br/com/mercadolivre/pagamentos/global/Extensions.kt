@@ -31,9 +31,8 @@ inline fun FragmentManager.transaction(func: FragmentTransaction.() -> FragmentT
 
 fun AppCompatActivity.addFragment(fragment: Fragment, frameId: Int) {
     supportFragmentManager.transaction { add(frameId, fragment) }
-
 }
 
 fun AppCompatActivity.replaceFragment(fragment: Fragment, frameId: Int) {
-    supportFragmentManager.transaction { replace(frameId, fragment) }
+    supportFragmentManager.transaction { replace(frameId, fragment).addToBackStack(null) }
 }

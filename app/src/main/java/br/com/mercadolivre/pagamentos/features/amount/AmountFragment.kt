@@ -26,7 +26,6 @@ class AmountFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(AmountViewModel::class.java)
         viewModel.getSummary().observe(this, Observer(this::showSummary))
         viewModel.getError().observe(this, Observer(this::handleError))
-
         return inflater.inflate(R.layout.fragment_amount, container, false)
     }
 
@@ -61,16 +60,22 @@ class AmountFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadSummary()
-    }
-
     private fun handleError(it: Throwable?) {
         Snackbar.make(activity!!.window.decorView.rootView, it.getErrorMessage(), Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry) {
                     viewModel.saveAmount(et_amount.text.toString().toDouble())
                 }
                 .show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadSummary()
+    }
+
+    override fun onStop() {
+        viewModel.getSummary().removeObservers(this)
+        viewModel.onStop()
+        super.onStop()
     }
 }

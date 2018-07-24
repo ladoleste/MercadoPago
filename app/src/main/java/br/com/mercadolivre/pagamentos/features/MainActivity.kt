@@ -27,12 +27,10 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
 
         when {
             step == 0 -> {
-                val fragment = AmountFragment()
-                replaceFragment(fragment, R.id.fl_holder)
+                replaceFragment(AmountFragment(), R.id.fl_holder)
             }
             step == 1 -> {
-                val fragment = PaymentMethodFragment()
-                replaceFragment(fragment, R.id.fl_holder)
+                replaceFragment(PaymentMethodFragment(), R.id.fl_holder)
             }
             step == 2 -> {
                 replaceFragment(CardFragment(), R.id.fl_holder)
@@ -46,5 +44,14 @@ class MainActivity : AppCompatActivity(), ChangeFragment {
             }
         }
         step++
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            supportFragmentManager.popBackStackImmediate()
+        } else {
+            step--
+            super.onBackPressed()
+        }
     }
 }
