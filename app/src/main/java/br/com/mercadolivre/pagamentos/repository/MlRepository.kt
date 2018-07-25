@@ -14,7 +14,7 @@ interface MlRepository {
     fun loadCardIssuers(id: String): Single<List<CardIssuer>>
     fun loadInstallments(amount: Double, payment_method_id: String, issuer: Int): Single<List<Installments>>
 
-    fun saveAmount(amount: Double)
+    fun saveAmount(amount: Long)
     fun saveCardIssuer(cardIssuer: CardIssuer)
     fun savePaymentMethod(paymentMethod: PaymentMethod)
     fun savePayCost(payCost: PayerCostsItem)

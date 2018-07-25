@@ -38,11 +38,10 @@ class AmountFragment : Fragment() {
 
             val mainActivity = requireActivity()
             if (mainActivity is ChangeFragment) {
-                val amount = et_amount.text.toString().toDoubleOrNull()
-                if (amount == null || amount == 0.0) {
+                if (et_amount.rawValue == 0L) {
                     et_amount.error = getString(R.string.amount_validation)
                 } else {
-                    viewModel.saveAmount(amount)
+                    viewModel.saveAmount(et_amount.rawValue)
                     mainActivity.onNextStep()
                 }
             }
@@ -52,7 +51,7 @@ class AmountFragment : Fragment() {
     private fun handleError(it: Throwable?) {
         Snackbar.make(activity!!.window.decorView.rootView, it.getErrorMessage(), Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry) {
-                    viewModel.saveAmount(et_amount.text.toString().toDouble())
+                    viewModel.saveAmount(et_amount.rawValue)
                 }
                 .show()
     }

@@ -36,9 +36,9 @@ class MlRepositoryImpl : MlRepository {
 
     override fun loadInstallments(amount: Double, payment_method_id: String, issuer: Int) = api.loadInstallments(amount, payment_method_id, issuer)
 
-    override fun saveAmount(amount: Double) {
+    override fun saveAmount(amount: Long) {
         sharedPreferences.edit {
-            putLong(AMOUNT, amount.toLong())
+            putLong(AMOUNT, amount)
         }
     }
 

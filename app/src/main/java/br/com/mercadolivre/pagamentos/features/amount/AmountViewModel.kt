@@ -25,7 +25,7 @@ class AmountViewModel : BaseViewModel() {
 
     fun getError(): LiveData<Throwable> = error
 
-    fun saveAmount(amount: Double) {
+    fun saveAmount(amount: Long) {
         try {
             repo.saveAmount(amount)
         } catch (e: Exception) {
