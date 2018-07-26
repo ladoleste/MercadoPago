@@ -16,7 +16,6 @@ import br.com.mercadolivre.pagamentos.features.ChangeFragment
 import br.com.mercadolivre.pagamentos.features.MainActivity
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import kotlinx.android.synthetic.main.fragment_installments.*
-import timber.log.Timber
 
 /**
  * A placeholder fragment containing a simple view.
@@ -43,9 +42,12 @@ class InstallmentsFragment : Fragment() {
     }
 
     private fun loadInstallments(installment: Installments?) {
-        Timber.d(installment.toString())
         progress_bar.visibility = View.GONE
         tv_loading_message.visibility = View.GONE
+
+        if (installment == null) {
+            tv_no_items.visibility = View.VISIBLE
+        }
     }
 
     private fun loadPayCosts(payCosts: List<PayerCostsItem>?) {

@@ -43,8 +43,12 @@ class InstallmentsViewModel : BaseViewModel() {
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnError { t -> Timber.e(t) }
                     .subscribe({
-                        installments.postValue(it.first())
-                        payCosts.postValue(it.first().payerCosts)
+                        if (!it.isEmpty()) {
+                            installments.postValue(it.first())
+                            payCosts.postValue(it.first().payerCosts)
+                        } else {
+                            installments.postValue(null)
+                        }
                     }, {
                         error.postValue(it)
                     }))

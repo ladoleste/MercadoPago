@@ -34,11 +34,11 @@ class MlRepositoryImpl : MlRepository {
 
     override fun loadCardIssuers(id: String) = api.loadCardIssuers(id)
 
-    override fun loadInstallments(amount: Double, payment_method_id: String, issuer: Int) = api.loadInstallments(amount, payment_method_id, issuer)
+    override fun loadInstallments(amount: Int, payment_method_id: String, issuer: Int) = api.loadInstallments(amount, payment_method_id, issuer)
 
-    override fun saveAmount(amount: Long) {
+    override fun saveAmount(amount: Int) {
         sharedPreferences.edit {
-            putLong(AMOUNT, amount)
+            putInt(AMOUNT, amount)
         }
     }
 
@@ -69,8 +69,8 @@ class MlRepositoryImpl : MlRepository {
             Gson().fromJson(r, PaymentMethod::class.java)
     }
 
-    override fun getAmount(): Double {
-        return sharedPreferences.getLong(AMOUNT, 0).toDouble()
+    override fun getAmount(): Int {
+        return sharedPreferences.getInt(AMOUNT, 0)
     }
 
     override fun getCardIssuer(): CardIssuer {

@@ -11,7 +11,7 @@
     <string name="summary">Resumo</string>
     <string name="amount_validation">Por favor informe o valor</string>
     <string name="ok">OK</string>
-    <string name="summary_amount">Valor: %1$f</string>
+    <string name="summary_amount">Valor: %1$s</string>
     <string name="summary_issuer">Cartão: %1$s</string>
     <string name="summary_payment_method">Método de pagamento: %1$s</string>
     <string name="summary_pay_cost">Parcelas: %1$s</string>
@@ -21,4 +21,5 @@
     <string name="loading_pay_methods">Carregando formas de pagamento</string>
     <string name="loading_banks">Carregando bancos</string>
     <string name="loading_installments">Carregando parcelas</string>
+    <string name="reset">limpar</string>
 </resources>

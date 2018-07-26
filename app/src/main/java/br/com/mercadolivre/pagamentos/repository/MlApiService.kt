@@ -19,7 +19,7 @@ interface MlApiService {
 
     @GET("v1/payment_methods/installments")
     fun loadInstallments(
-            @Query("amount") amount: Double,
+            @Query("amount") amount: Int,
             @Query("payment_method_id") id: String,
             @Query("issuer.id") issuer: Int
     ): Single<List<Installments>>

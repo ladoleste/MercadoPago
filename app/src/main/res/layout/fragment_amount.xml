@@ -24,21 +24,36 @@
         android:layout_height="wrap_content"
         android:hint="@string/hint"
         android:inputType="number"
-        android:maxLength="15"
+        android:maxLength="7"
+        app:decimal_digits="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_amount" />
 
     <Button
+        android:id="@+id/bt_reset"
+        style="@style/Base.Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/reset"
+        app:layout_constraintEnd_toStartOf="@id/bt_next"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_amount" />
+
+    <Button
         android:id="@+id/bt_next"
         style="@style/Base.Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:width="200dp"
         android:text="@string/next"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/bt_reset"
         app:layout_constraintTop_toBottomOf="@id/et_amount" />
 
 </android.support.constraint.ConstraintLayout>

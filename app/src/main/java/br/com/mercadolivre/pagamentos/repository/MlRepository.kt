@@ -12,14 +12,14 @@ import io.reactivex.Single
 interface MlRepository {
     fun loadPaymentMethods(): Single<List<PaymentMethod>>
     fun loadCardIssuers(id: String): Single<List<CardIssuer>>
-    fun loadInstallments(amount: Double, payment_method_id: String, issuer: Int): Single<List<Installments>>
+    fun loadInstallments(amount: Int, payment_method_id: String, issuer: Int): Single<List<Installments>>
 
-    fun saveAmount(amount: Long)
+    fun saveAmount(amount: Int)
     fun saveCardIssuer(cardIssuer: CardIssuer)
     fun savePaymentMethod(paymentMethod: PaymentMethod)
     fun savePayCost(payCost: PayerCostsItem)
 
-    fun getAmount(): Double
+    fun getAmount(): Int
     fun getCardIssuer(): CardIssuer
     fun getPaymentMethod(): PaymentMethod
     fun getPayCost(): PayerCostsItem

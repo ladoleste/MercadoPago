@@ -41,17 +41,21 @@ class AmountFragment : Fragment() {
                 if (et_amount.rawValue == 0L) {
                     et_amount.error = getString(R.string.amount_validation)
                 } else {
-                    viewModel.saveAmount(et_amount.rawValue)
+                    viewModel.saveAmount(et_amount.rawValue.toInt())
                     mainActivity.onNextStep()
                 }
             }
+        }
+
+        bt_reset.setOnClickListener {
+            et_amount.setText("")
         }
     }
 
     private fun handleError(it: Throwable?) {
         Snackbar.make(activity!!.window.decorView.rootView, it.getErrorMessage(), Snackbar.LENGTH_INDEFINITE)
                 .setAction(R.string.retry) {
-                    viewModel.saveAmount(et_amount.rawValue)
+                    viewModel.saveAmount(et_amount.rawValue.toInt())
                 }
                 .show()
     }
