@@ -1,8 +1,8 @@
 package br.com.mercadolivre.pagamentos.features.installments
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.dto.PayerCostsItem
 import br.com.mercadolivre.pagamentos.global.inflate

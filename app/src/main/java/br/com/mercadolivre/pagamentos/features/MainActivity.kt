@@ -1,13 +1,12 @@
 package br.com.mercadolivre.pagamentos.features
 
 import android.app.AlertDialog
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import br.com.mercadolivre.pagamentos.R
 import br.com.mercadolivre.pagamentos.features.amount.AmountFragment
 import br.com.mercadolivre.pagamentos.features.cardissuers.CardFragment
@@ -16,6 +15,7 @@ import br.com.mercadolivre.pagamentos.features.paymentmethod.PaymentMethodFragme
 import br.com.mercadolivre.pagamentos.global.addFragment
 import br.com.mercadolivre.pagamentos.global.getErrorMessage
 import br.com.mercadolivre.pagamentos.global.replaceFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), ChangeFragment {

@@ -1,8 +1,8 @@
 package br.com.mercadolivre.pagamentos.features.cardissuers
 
-import android.arch.lifecycle.LifecycleOwner
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import br.com.mercadolivre.pagamentos.dto.CardIssuer
 import br.com.mercadolivre.pagamentos.features.BaseViewModel
 import br.com.mercadolivre.pagamentos.global.MlApplication

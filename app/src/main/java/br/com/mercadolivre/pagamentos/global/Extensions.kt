@@ -1,13 +1,13 @@
 package br.com.mercadolivre.pagamentos.global
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import br.com.mercadolivre.pagamentos.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
